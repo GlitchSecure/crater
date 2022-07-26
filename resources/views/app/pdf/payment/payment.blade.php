@@ -51,7 +51,7 @@
         .header-logo {
             /* position: absolute; */
             text-transform: capitalize;
-            color: #817AE3;
+            color: #333;
             padding-top: 0px;
         }
 
@@ -271,15 +271,11 @@
             font-size: 14px;
             line-height: 21px;
             text-align: right;
-            color: #5851D8;
+            color: #595959;
             margin-left: 150px;
         }
 
     </style>
-
-    @if (App::isLocale('th'))
-        @include('app.pdf.locale.th')
-    @endif
 </head>
 
 <body>
@@ -338,6 +334,16 @@
                         <td class="attribute-value">
                             &nbsp;{{ $payment->paymentMethod ? $payment->paymentMethod->name : '-' }}</td>
                     </tr>
+                    <tr>
+                        <td class="attribute-label">Payment Currency</td>
+                        <td class="attribute-value"> &nbsp; {{$payment->customer->currency->code}} </td>
+                    </tr>
+                    @if($payment->customer->currency->id != 10)
+                    <tr>
+                        <td class="attribute-label">{{$payment->customer->currency->code}} -> CAD Exchange</td>
+                        <td class="attribute-value"> &nbsp; {{$payment->exchange_rate}}</td>
+                    </tr>
+                    @endif
                     @if ($payment->invoice && $payment->invoice->invoice_number)
                         <tr>
                             <td class="attribute-label">@lang('pdf_invoice_label')</td>
@@ -351,9 +357,16 @@
     </div>
     <div class="total-display-box">
         <p class="total-display-label">@lang('pdf_payment_amount_received_label')</p>
-        <span class="amount">{!! format_money_pdf($payment->amount, $payment->customer->currency) !!}</span>
+        <span class="amount">{!! format_money_pdf($payment->amount, $payment->customer->currency) !!}&nbsp;{{$payment->customer->currency->code}}</span>
     </div>
     <div class="notes">
+      @if ($payment->getCustomFieldBySlug('CUSTOM_PAYMENT_GST_NUMBER')->default_answer !==null)
+        {{$payment->getCustomFieldBySlug('CUSTOM_PAYMENT_GST_NUMBER')->customField->label}}{{$payment->getCustomFieldBySlug('CUSTOM_PAYMENT_GST_NUMBER')->default_answer}}
+      @endif
+      <br>
+      @if ($payment->getCustomFieldBySlug('CUSTOM_PAYMENT_TRANSACTION_NUMBER')->default_answer)
+        {{$payment->getCustomFieldBySlug('CUSTOM_PAYMENT_TRANSACTION_NUMBER')->customField->label}}{{$payment->getCustomFieldBySlug('CUSTOM_PAYMENT_TRANSACTION_NUMBER')->default_answer}}
+      @endif
         @if ($notes)
             <div class="notes-label">
                 @lang('pdf_notes')

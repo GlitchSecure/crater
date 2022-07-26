@@ -15,6 +15,7 @@
             margin: 0px;
             padding: 0px;
             margin-top: 50px;
+
         }
 
         .text-center {
@@ -35,6 +36,7 @@
             left: 0px;
             width: 100%;
             margin-left: 0%;
+
         }
 
         .header-container {
@@ -49,7 +51,7 @@
             margin-top: 20px;
             padding-bottom: 20px;
             text-transform: capitalize;
-            color: #817AE3;
+            color: #333;
 
         }
 
@@ -333,10 +335,6 @@
         }
 
     </style>
-
-    @if (App::isLocale('th'))
-        @include('app.pdf.locale.th')
-    @endif
 </head>
 
 <body>
@@ -378,6 +376,10 @@
                         <td class="attribute-label">@lang('pdf_invoice_due_date')</td>
                         <td class="attribute-value"> &nbsp;{{ $invoice->formattedDueDate }}</td>
                     </tr>
+                    <tr>
+                      <td class="attribute-label">Currency</td>
+                       <td class="attribute-value"> &nbsp;  {{ $invoice->customer->currency->code }}</td>
+                    </tr>
                 </table>
             </div>
 
@@ -386,7 +388,7 @@
 
         <div class="billing-address-container billing-address">
             @if ($billing_address)
-                <b>@lang('pdf_bill_to')</b> <br>
+                <b>Bill to:</b> <br>
 
                 {!! $billing_address !!}
             @endif
@@ -401,10 +403,14 @@
         </div>
 
         <div style="position: relative; clear: both;">
-            @include('app.pdf.invoice.partials.table')
+            @include('app.pdf.invoice.partials.table_glitchsecure')
         </div>
 
         <div class="notes">
+            @if ($invoice->getCustomFieldBySlug('CUSTOM_INVOICE_GST_NUMBER') !==null)
+              {{$invoice->getCustomFieldBySlug('CUSTOM_INVOICE_GST_NUMBER')->customField->label}}{{$invoice->getCustomFieldBySlug('CUSTOM_INVOICE_GST_NUMBER')->default_answer}}
+            @endif
+            <br>
             @if ($notes)
                 <div class="notes-label">
                     @lang('pdf_notes')

@@ -101,7 +101,7 @@
                 </tr>
             @endif
         @endif
-        
+
         @if ($estimate->tax_per_item === 'YES')
             @foreach ($taxes as $tax)
                 <tr>
@@ -125,7 +125,7 @@
                 </tr>
             @endforeach
         @endif
-        
+
         <tr>
             <td class="py-3"></td>
             <td class="py-3"></td>
