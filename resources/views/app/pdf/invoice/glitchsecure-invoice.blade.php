@@ -149,7 +149,7 @@
         }
 
         .billing-address-name {
-            max-width: 250px;
+            max-width: 400px;
             font-size: 15px;
             line-height: 22px;
             padding: 0px;
@@ -411,6 +411,7 @@
     <div class="content-wrapper">
         <div class="address-container">
             <div class="company-address-container company-address">
+                <b>@lang('pdf_received_from')</b> <br>
                 {!! $company_address !!}
             </div>
 
