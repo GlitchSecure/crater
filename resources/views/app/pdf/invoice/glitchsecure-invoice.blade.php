@@ -149,7 +149,7 @@
         }
 
         .billing-address-name {
-            max-width: 400px;
+            max-width: 250px;
             font-size: 15px;
             line-height: 22px;
             padding: 0px;
@@ -163,7 +163,7 @@
             color: #595959;
             padding: 0px;
             margin: 0px;
-            width: 170px;
+            width: 250px;
             word-wrap: break-word;
         }
 
