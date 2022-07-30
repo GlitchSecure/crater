@@ -53,11 +53,6 @@
 
         }
 
-        .header {
-            font-size: 20px;
-            color: rgba(0, 0, 0, 0.7);
-        }
-
         .content-wrapper {
             display: block;
             margin-top: 0px;
