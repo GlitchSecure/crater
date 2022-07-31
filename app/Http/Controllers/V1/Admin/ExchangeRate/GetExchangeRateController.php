@@ -24,7 +24,7 @@ class GetExchangeRateController extends Controller
     public function __invoke(Request $request, Currency $currency)
     {
         $settings = CompanySetting::getSettings(['currency'], $request->header('company'));
-        $baseCurrency = Currency::findOrFail($settings['currency']);
+        $baseCurrency = Currency::get($settings['currency']);
 
         $query = ExchangeRateProvider::whereJsonContains('currencies', $currency->code)
                 ->where('active', true)
