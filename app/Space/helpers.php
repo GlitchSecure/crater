@@ -130,7 +130,7 @@ function format_money_pdf($money, $currency = null)
     $money = $money / 100;
 
     if (! $currency) {
-        $currency = Currency::findOrFail(CompanySetting::getSetting('currency', 1));
+        $currency = Currency::get(CompanySetting::getSetting('currency', 1));
     }
 
     $format_money = number_format(
