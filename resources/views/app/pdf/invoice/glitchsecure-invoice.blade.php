@@ -163,7 +163,7 @@
             color: #595959;
             padding: 0px;
             margin: 0px;
-            width: 170px;
+            width: 250px;
             word-wrap: break-word;
         }
 
@@ -411,6 +411,7 @@
     <div class="content-wrapper">
         <div class="address-container">
             <div class="company-address-container company-address">
+                <b>@lang('pdf_received_from')</b> <br>
                 {!! $company_address !!}
             </div>
 

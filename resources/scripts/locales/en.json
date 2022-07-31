@@ -1519,8 +1519,8 @@
   "pdf_total_tax_label": "TOTAL TAX",
   "pdf_tax_types_label": "Tax Types",
   "pdf_expenses_label": "Expenses",
-  "pdf_bill_to": "Bill to,",
-  "pdf_ship_to": "Ship to,",
+  "pdf_bill_to": "Bill to:",
+  "pdf_ship_to": "Ship to:",
   "pdf_received_from": "Received from:",
   "pdf_tax_label": "Tax"
 }
