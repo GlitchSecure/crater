@@ -400,7 +400,8 @@
                 <td width="40%" class="header-section-right invoice-details-container">
                     <h1>@lang('pdf_invoice_label')</h1>
                     <h4>{{ $invoice->invoice_number }}</h4>
-                    <h4>{{ $invoice->formattedInvoiceDate }}</h4>
+                    <h4>Date: {{ $invoice->formattedInvoiceDate }}</h4>
+                    <h4>Due: {{ $invoice->formattedDueDate }}</h4>
                 </td>
             </tr>
         </table>
